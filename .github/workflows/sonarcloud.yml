@@ -31,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Run tests
-        run: poetry run pytest
+      - name: Run tests with coverage
+        run: poetry run pytest -p pytest_cov --cov=src/lab4_api_cv --cov-report=xml
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v7
