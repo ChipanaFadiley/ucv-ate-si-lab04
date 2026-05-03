@@ -1,3 +1,4 @@
+from typing import Annotated
 from pathlib import Path
 import shutil
 
@@ -14,8 +15,15 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 def healthcheck() -> dict[str, str]:
     return {"mensaje": "API activa"}
 
-@app.post("/analyze-image")
-def analyze_image(file: UploadFile = File(...)) -> dict:
+@app.post(
+    "/analyze-image",
+    responses={
+        400: {
+            "description": "Archivo invalido o imagen no procesable.",
+        }
+    },
+)
+def analyze_image(file: Annotated[UploadFile, File(...)]) -> dict:
     if not file.filename:
         raise HTTPException(status_code=400, detail="El archivo debe tener nombre.")
 
