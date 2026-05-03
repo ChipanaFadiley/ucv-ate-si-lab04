@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "lab4-api-cv"
+version = "0.1.0"
+description = "API de vision por computadora con FastAPI para deteccion de bordes."
+authors = ["ChipanaFadiley <tu-correo@example.com>"]
+readme = "README.md"
+packages = [{ include = "lab4_api_cv", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.12"
+uvicorn = { extras = ["standard"], version = "^0.34.2" }
+opencv-python = "^4.11.0.86"
+numpy = "^2.2.5"
+matplotlib = "^3.10.1"
+python-multipart = "^0.0.20"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+httpx = "^0.28.1"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
